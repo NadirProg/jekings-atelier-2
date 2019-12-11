@@ -16,5 +16,15 @@ pipeline {
                 }
             }
         }
+        stage('Test') {
+            steps {
+                bat 'mvn install'
+            }
+			post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
     }
 }

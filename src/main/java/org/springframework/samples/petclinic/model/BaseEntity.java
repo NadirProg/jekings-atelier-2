@@ -22,6 +22,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 //testing the webhook on push 2
+//testing the webhook on push pipeline 3
 /**
  * Simple JavaBean domain object with an id property. Used as a base class for objects
  * needing this property.

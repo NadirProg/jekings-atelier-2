@@ -26,13 +26,13 @@ pipeline {
                 }
             }
         }
-		 stage('') {
+		 stage('couverture') {
             steps {
-                bat 'mvn '
+                bat 'mvn cobertura:cobertura -Dcobertura.report.format=xml'
             }
 			post {
                 always {
-                    junit 'target/surefire-reports/*.xml'
+                    cobertura coberturaReportFile: '**/target/site/cobertura/coverage.xml'
                 }
             }
         }

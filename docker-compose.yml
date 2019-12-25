@@ -9,7 +9,7 @@ services:
       - ./sonarqube/data:/opt/sonarqube/data
       - ./sonarqube/extensions:/opt/sonarqube/extensions
     ports:
-      - "9000:9000"
+      - "9090:9000"
       #  H2 embedded database server listening port, defaults to 9092
       - "9092:9092"
     networks:

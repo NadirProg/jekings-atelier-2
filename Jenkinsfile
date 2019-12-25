@@ -37,18 +37,15 @@ pipeline {
             }
         }
 		
-		stage('Sonarqube') {
-			environment {
-			scannerHome = tool 'SonarQubeScanner'
-			}
-			steps {
-				withSonarQubeEnv('sonarqube') {
-            sh "${scannerHome}/bin/sonar-scanner"
-			}
-			timeout(time: 10, unit: 'MINUTES') {
-            waitForQualityGate abortPipeline: true
-			}
-		}
-}
+		stage('build && SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('My SonarQube Server') {
+                    // Optionally use a Maven environment you've configured already
+                    withMaven(maven 'maven-3.6.2') {
+                        sh 'mvn clean package sonar:sonar'
+                    }
+                }
+            }
+        }
     }
 }

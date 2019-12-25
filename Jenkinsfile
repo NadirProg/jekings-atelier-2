@@ -39,7 +39,7 @@ pipeline {
 		
 		stage('SonarQube analysis') {
             steps {
-                withSonarQubeEnv('My SonarQube Server') {
+                withSonarQubeEnv('Sonarqube') {
                     // Optionally use a Maven environment you've configured already
                         sh 'mvn clean verify sonar:sonar -Dsonar.login=844daff72e5f7a807cdf22b9fa71b5cf7e6d9a95'
                 }

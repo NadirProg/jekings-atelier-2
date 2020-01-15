@@ -17,6 +17,27 @@ pipeline {
             }
         }
 		
+		stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+			post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+		 stage('couverture') {
+            steps {
+                bat 'mvn cobertura:cobertura -Dcobertura.report.format=xml'
+            }
+			post {
+                always {
+                    cobertura coberturaReportFile: '**/target/site/cobertura/coverage.xml'
+                }
+            }
+        }
+		
 		stage('SonarQube analysis') {
             steps {
                     // Optionally use a Maven environment you've configured already
